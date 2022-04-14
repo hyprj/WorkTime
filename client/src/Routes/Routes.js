@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { Employee, About, NotFound, NavBar } from "./index";
+import { Employee, About, NotFound, NavBar, Schedule } from "./index";
 
 const PageRoutes = () => {
   return (
@@ -9,6 +9,7 @@ const PageRoutes = () => {
       <Routes>
         <Route exact path="/" element={<About />} />
         <Route path="about" element={<About />} />
+        <Route path="schedule" element={<Schedule />} />
         <Route path="employees/:employeeId" element={<Employee/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
