@@ -1,4 +1,4 @@
-import classes from "./employeeItem.module.scss";
+import classes from "./card.module.scss";
 
 const EmployeeItem = (props) => {
   return (
