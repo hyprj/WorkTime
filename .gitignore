@@ -1,0 +1,25 @@
+# client folder
+# dependencies
+client/node_modules
+client/.pnp
+client/.pnp.js
+
+# testing
+client/coverage
+
+# production
+client/build
+
+# misc
+client/b.DS_Store
+client/b.env.local
+client/b.env.development.local
+client/b.env.test.local
+client/b.env.production.local
+
+client/bnpm-debug.log*
+client/byarn-debug.log*
+client/byarn-error.log*
+
+#server folder
+server/node_modules

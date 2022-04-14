@@ -1,0 +1,53 @@
+@use '../../index.scss' as mixin;
+
+.nav__logo {
+  font-family: "Lora", serif;
+  font-size: 3.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.header {
+  background-color: #fffede;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  max-width: 50%;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.btn {
+  background-color: #1f4d7e;
+  color: #fff;
+  padding: 0.3rem 1.2rem;
+  border-radius: 20rem;
+  text-decoration: none;
+}
+
+.btn:hover,
+.brn:focus {
+  background-color: #133150;
+}
+
+.nav__list {
+  display: flex;
+}
+
+.nav__elem {
+  padding: 0 1rem;
+}
+
+.nav__link {
+  text-decoration: none;
+}
+
+.nav__link:hover,
+.nav__link:focus {
+  border-bottom: 2px solid black;
+}
