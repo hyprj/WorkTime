@@ -3,15 +3,19 @@
 .nav__logo {
   font-family: "Lora", serif;
   font-size: 3.2rem;
-  font-weight: 500;
+  font-weight: 700;
+  color: #fff;
   cursor: pointer;
 }
 
 .header {
-  background-color: #fffede;
+  background-color: #18266C;
+  color: #fff;
   padding: 1rem 0;
   display: flex;
   justify-content: center;
+  // align-items: baseline;
+  // align-items: center;
 }
 
 .nav {
@@ -19,7 +23,15 @@
   max-width: 50%;
   flex-grow: 1;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+}
+
+.nav a {
+  color: #fff;
+}
+
+.nav a:focus, .nav a:hover {
+  border-color: #fff;
 }
 
 .btn {
