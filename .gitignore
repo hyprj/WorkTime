@@ -27,7 +27,7 @@ server/node_modules
 #firebase
 client/firebase-config.js
 node_modules
-github/
+.github/*
 client/.firebaserc
 client/.gitignore
 client/firebase.json
