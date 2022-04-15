@@ -1,0 +1,72 @@
+@use "../../Assets/breakpoints.scss" as mixin;
+
+.container {
+    margin: 10rem 1.6rem;
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+
+    &Content {
+        display: none;
+    }
+    &Form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &Title {
+        margin-bottom: 15rem;
+        font-size: 3.2rem;
+        font-family: "Lora", serif;
+    }
+    &Input {
+        width: 100%;
+        margin: 1rem 0;
+        padding: 1.6rem 2rem 0.6rem;
+        border: none;
+        border-bottom: 2px solid grey;
+        
+    }
+    &Input:last-of-type {
+        margin-bottom: 5rem;
+    }
+    &Input:focus, &Input:active {
+        outline: none;
+        border-bottom: 2px solid black;
+        background-color: #F1F1F1;
+    }
+    &Button {
+        background-color: #229954;
+        color: #fff;
+        height: 5rem;
+        width: 100%;
+        border: none;
+        font-size: 1.8rem;
+        font-weight: 500;
+        border-radius: 1.4rem;
+    }
+    &Signup {
+        margin: 1rem 0;
+        font-size: 1.4rem;
+    }
+    @include mixin.md {
+        width: 100%;
+        margin: 0 10%;
+        max-width: 70rem;
+        &Content {
+            display: block;
+            flex-basis: 60%;
+        }
+        &Form {
+            flex-basis: 40%;
+        }
+        &Title {
+            display: none;
+        }
+    }
+}
