@@ -2,6 +2,17 @@ import Section from "../../Components/UI/Section";
 import Table from "../../Components/Table/Table";
 
 const Schedule = () => {
+  const organisationPositions = [
+    {
+      position: "Attendant",
+      color: "green",
+    },
+    {
+      position: "Manager",
+      color: "red",
+    },
+  ];
+
   const tHeadData = [
     "",
     "Monday",
@@ -15,6 +26,7 @@ const Schedule = () => {
   const employeesShifts = [
     {
       id: 1,
+      position: "Attendant",
       data: [
         { day: 1, text: "14:00 - 22:00" },
         { day: 2 },
@@ -27,6 +39,7 @@ const Schedule = () => {
     },
     {
       id: 2,
+      position: "Manager",
       data: [
         { day: 1 },
         { day: 2 },
@@ -39,6 +52,7 @@ const Schedule = () => {
     },
     {
       id: 3,
+      position: "Attendant",
       data: [
         { day: 1 },
         { day: 2 },
@@ -51,6 +65,7 @@ const Schedule = () => {
     },
     {
       id: 4,
+      position: "Attendant",
       data: [
         { day: 1 },
         { day: 2 },
@@ -63,6 +78,7 @@ const Schedule = () => {
     },
     {
       id: 5,
+      position: "Attendant",
       data: [
         { day: 1 },
         { day: 2 },
@@ -75,6 +91,7 @@ const Schedule = () => {
     },
     {
       id: 6,
+      position: "Attendant",
       data: [
         { day: 1 },
         { day: 2 },
@@ -87,6 +104,7 @@ const Schedule = () => {
     },
     {
       id: 7,
+      position: "Attendant",
       data: [
         { day: 1 },
         { day: 2 },
@@ -101,7 +119,7 @@ const Schedule = () => {
 
   return (
     <Section title="Schedule">
-      <Table headData={tHeadData} bodyData={employeesShifts} />
+      <Table headData={tHeadData} bodyData={employeesShifts} options={organisationPositions} />
     </Section>
   );
 };

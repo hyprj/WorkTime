@@ -1,12 +1,27 @@
 .table {
   border-spacing: 0;
   margin: 4rem 0;
+  // table-layout: fixed;
 }
 
 .tableItem {
   width: 14rem;
   height: 6rem;
   text-align: center;
+
+  &Time {
+    color: #fff;
+    margin: 0 .6rem;
+    border-radius: .3rem;
+    padding: 1rem .2rem;
+  }
+}
+
+.red {
+  background-color: #ff8080;
+}
+.green {
+  background-color: 	 #313091;
 }
 
 .tableHeadItem:first-of-type {
