@@ -1,37 +1,96 @@
-@use '../../index.scss' as mixin;
+@use "../../Assets/breakpoints.scss" as mixin;
+@import "../../Assets/variables.scss";
 
-.nav__logo {
-  font-family: "Lora", serif;
-  font-size: 3.2rem;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
+.navLogo {
+  @include mixin.sm {
+    display: block;
+    color: #fff;
+    font-family: "Lora", serif;
+    font-size: 3.2rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  @include mixin.md-max {
+    display: none;
+  }
 }
 
 .header {
-  background-color: #18266C;
-  color: #fff;
-  padding: 1rem 0;
+  position: relative;
   display: flex;
-  justify-content: center;
-  // align-items: baseline;
-  // align-items: center;
+  align-items: center;
+  padding: 0 2.4rem;
+  height: 6rem;
+  background-color: $blue;
+  color: #fff;
+
+  @include mixin.sm-max {
+    justify-content: right;
+  }
+
+  @include mixin.sm {
+    padding: 2rem 0;
+    justify-content: center;
+  }
+}
+
+.hamburger {
+  position: fixed;
+  z-index: 10;
+  @include mixin.sm {
+    display: none;
+  }
 }
 
 .nav {
   display: flex;
-  max-width: 50%;
-  flex-grow: 1;
-  justify-content: space-between;
-  align-items: center;
+
+  @include mixin.sm-max {
+    position: fixed;
+    width: 80%;
+    height: 100vh;
+    right: 110%;
+    top: 0;
+    z-index: 3;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    color: black;
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0 8px 1px rgba(0, 0, 0, 0.3);
+    transition: transform 180ms;
+  }
+
+  @include mixin.sm {
+    max-width: 80%;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    border-left: none;
+  }
+
+  @include mixin.lg {
+    max-width: 70%;
+  }
+
+  &Active {
+    transform: translateX(110%);
+  }
 }
 
 .nav a {
-  color: #fff;
+  color: black;
+  @include mixin.sm {
+    color: #fff;
+  }
 }
 
-.nav a:focus, .nav a:hover {
-  border-color: #fff;
+.nav a:focus,
+.nav a:hover {
+  @include mixin.sm {
+    border-color: #fff;
+  }
 }
 
 .btn {
@@ -47,19 +106,37 @@
   background-color: #133150;
 }
 
-.nav__list {
+.navList {
   display: flex;
+  flex-direction: column;
+  text-align: right;
+  width: 100%;
+  color: black;
+  padding: 7rem 0;
+  @include mixin.sm {
+    flex-direction: row;
+    width: auto;
+    text-align: left;
+    padding: 0;
+  }
 }
 
-.nav__elem {
-  padding: 0 1rem;
+.navElem {
+  @include mixin.sm-max {
+    padding: 3rem 3rem;
+    font-size: 2.4rem;
+  }
+
+  @include mixin.sm {
+    padding: 0 1rem;
+  }
 }
 
-.nav__link {
+.navLink {
   text-decoration: none;
 }
 
-.nav__link:hover,
-.nav__link:focus {
-  border-bottom: 2px solid black;
+.navLink:hover,
+.navLink:focus {
+  border-bottom: 0.2rem solid black;
 }

@@ -7,10 +7,10 @@ const PageRoutes = () => {
     <Router>
       <NavBar />
       <Routes>
-        <Route exact path="/" element={<About />} />
-        <Route path="about" element={<About />} />
-        <Route path="schedule" element={<Schedule />} />
-        <Route path="employees/:employeeId" element={<Employee/>}/>
+        <Route path="/" element={<About />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/employees/:employeeId" element={<Employee/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

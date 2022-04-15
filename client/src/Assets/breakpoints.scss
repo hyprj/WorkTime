@@ -1,44 +1,9 @@
 @use "sass:map";
 
-*,
-::before,
-::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  font-size: 62.5%;
-  font-family: "Roboto", sans-serif;
-  // font-family: "Lora", sans-serif;
-}
-
-body {
-  font-size: 1.6rem;
-}
-
-a {
-  color: rgb(0, 0, 0);
-}
-
-h2 {
-  font-weight: 500;
-  font-family: "Lora", serif;
-}
-
-button {
-  border: none;
-  font-family: "Roboto Slab", serif;
-  font-size: 1.6rem;
-}
-
-.reset {
-  text-decoration: none;
-}
-
 $breakpoints: (
+  "sm-max": 640px,
   "sm": 640px,
+  "md-max": 767px,
   "md": 768px,
   "lg": 992px,
   "xl": 1200px,
@@ -61,6 +26,18 @@ $breakpoints: (
 }
 @mixin xl {
   @media (min-width: map.get($breakpoints, "xl")) {
+    @content;
+  }
+}
+
+@mixin sm-max {
+  @media (max-width: map.get($breakpoints, "sm-max")) {
+    @content;
+  }
+}
+
+@mixin md-max {
+  @media (max-width: map.get($breakpoints, "md-max")) {
     @content;
   }
 }
