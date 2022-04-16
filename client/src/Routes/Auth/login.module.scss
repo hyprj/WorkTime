@@ -1,5 +1,10 @@
 @use "../../Assets/breakpoints.scss" as mixin;
 
+.link {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
 .container {
     margin: 10rem 1.6rem;
     display: flex;
@@ -33,7 +38,6 @@
         
     }
     &Input:last-of-type {
-        margin-bottom: 5rem;
     }
     &Input:focus, &Input:active {
         outline: none;
@@ -41,6 +45,7 @@
         background-color: #F1F1F1;
     }
     &Button {
+        margin-top: 5rem;
         background-color: #229954;
         color: #fff;
         height: 5rem;
@@ -49,10 +54,19 @@
         font-size: 1.8rem;
         font-weight: 500;
         border-radius: 1.4rem;
+        &Purple {
+            background-color: #993366;
+        }
+    }
+    &Wrapper {
+        margin: 1rem 0;
     }
     &Signup {
         margin: 1rem 0;
         font-size: 1.4rem;
+    }
+    &Wrapper {
+        width: 100%;
     }
     @include mixin.md {
         width: 100%;

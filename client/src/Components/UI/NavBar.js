@@ -29,7 +29,7 @@ const NavBar = () => {
         </Link>
         <ul className={classes.navList} onClick={closeMenu}>
           <ol className={classes.navElem}>
-            <Link to="/About" className={classes.navLink}>
+            <Link to="about" className={classes.navLink}>
               About
             </Link>
           </ol>
