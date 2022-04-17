@@ -1,11 +1,14 @@
 import PageRoutes from "./Routes/Routes";
 
-import "./Assets/index.scss"
+import "./Assets/index.scss";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <div className="App">
-      <PageRoutes />
+      <AuthProvider>
+        <PageRoutes />
+      </AuthProvider>
     </div>
   );
 }

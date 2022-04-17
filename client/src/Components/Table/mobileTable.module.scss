@@ -1,0 +1,54 @@
+.table {
+  width: 100%;
+  &Row {
+    display: flex;
+    height: 5rem;
+  }
+  &Row:nth-of-type(even) &Item {
+    background-color: #eff5f5;
+  }
+  &Row:first-of-type &Header {
+    border-top: 2px solid #5f9ea0;
+    border-radius: 1.2rem 0 0 0;
+  }
+  &Row:first-of-type &Item {
+    border-radius: 0 1.2rem 0 0;
+    border-top: 2px solid #5f9ea0;
+  }
+  &Row:last-of-type &Header {
+    border-radius: 0 0 0 1.2rem;
+    border-bottom: 2px solid #5f9ea0;
+  }
+  &Row:last-of-type &Item {
+    border-radius: 0 0 1.2rem 0;
+    border-bottom: 2px solid #5f9ea0;
+  }
+  &Row:nth-of-type(even) &Header {
+    background-color: #4d8c8e;
+  }
+  &Header {
+    flex-basis: 50%;
+    background-color: #5f9ea0;
+    font-weight: 500;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 2px solid #5f9ea0;
+  }
+  &Item {
+    flex-basis: 50%;
+    border-right: 2px solid #5f9ea0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &Time {
+    border-radius: 0.3rem;
+    padding: 1rem 1rem;
+    color: #fff;
+    &Blue {
+        background-color: #313091;
+    }
+  }
+}

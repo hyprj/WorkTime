@@ -1,9 +1,10 @@
 .section {
+  width: 100%;
   &Title {
     font-size: 4.5rem;
   }
   &Container {
-    padding: 3rem 10rem;
+    padding: 3rem 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;

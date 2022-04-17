@@ -1,7 +1,20 @@
 import Section from "../../Components/UI/Section";
 import Table from "../../Components/Table/Table";
+import MobileTable from "../../Components/Table/MobileTable";
+import useWindowSize from "../../Hooks/useWindowSize";
+
+import { getDatabase, ref, onValue } from "firebase/database";
 
 const Schedule = () => {
+
+  const db = getDatabase();
+  const dataRef = ref(db, "organisations/koreanbbq/shifts/week/1");
+  onValue(dataRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+  })
+
+
   const organisationPositions = [
     {
       position: "Attendant",
@@ -117,9 +130,14 @@ const Schedule = () => {
     },
   ];
 
+  const windowSize = useWindowSize();
+  // console.log(windowSize)
+
   return (
     <Section title="Schedule">
-      <Table headData={tHeadData} bodyData={employeesShifts} options={organisationPositions} />
+      { windowSize.width > 767 ? <Table headData={tHeadData} bodyData={employeesShifts} options={organisationPositions}/> : <MobileTable headData={tHeadData} bodyData={employeesShifts} options={organisationPositions}/>}
+      {/* <Table headData={tHeadData} bodyData={employeesShifts} options={organisationPositions} /> */}
+      {/* <MobileTable headData={tHeadData} bodyData={employeesShifts} options={organisationPositions}/> */}
     </Section>
   );
 };

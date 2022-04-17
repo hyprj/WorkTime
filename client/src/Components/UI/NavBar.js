@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import useWindowSize from "../../Hooks/useWindowSize";
+import { signOut} from "firebase/auth";
+import { fb } from "../../service/firebase";
 
 import classes from "./NavBar.module.scss";
+import { AuthContext } from "../../context/AuthContext";
 
 const NavBar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
-  // const windowSize = useWindowSize();
+  const isLoggedIn = useContext(AuthContext) ? true : false;
+
+  const logout = () => {
+    signOut(fb.auth).then(() => console.log("user signed out")).catch((err) => console.log(err));
+  }
 
   const mobileMenuHandler = () => {
     if (isMenuActive) {
@@ -38,16 +44,21 @@ const NavBar = () => {
               Schedule
             </Link>
           </ol>
-          <ol className={classes.navElem} onClick={closeMenu}>
-            <Link to="employees/1" className={classes.btn}>
+          {!isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
+            <Link to="login" className={classes.btn}>
               Log In
             </Link>
-          </ol>
-          <ol className={classes.navElem} onClick={closeMenu}>
-            <a href="" className={classes.navLink}>
+          </ol>}
+          {!isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
+            <Link to="register" className={classes.navLink}>
               Register
-            </a>
-          </ol>
+            </Link>
+          </ol>}
+          {isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
+            <span className={classes.navLink} onClick={logout}>
+              Log out
+            </span>
+          </ol>}
         </ul>
       </nav>
     </header>
