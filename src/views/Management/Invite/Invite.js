@@ -1,6 +1,6 @@
 import { useState } from "react";
 import classes from "./invite.module.scss";
-import { fb, postData } from "../../service/firebase";
+import { fb, postData } from "../../../service/firebase";
 
 const Invite = ({ orgId }) => {
   const [userId, setUserId] = useState("");

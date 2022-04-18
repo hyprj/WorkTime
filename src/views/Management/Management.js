@@ -1,17 +1,17 @@
-import { Card } from "../../Routes/Employee";
-import Invite from "./Invite";
-import CreateOrganization from "./CreateOrganization";
-import Table from "../Table/Table";
-import MobileTable from "../Table/MobileTable";
-import useWindowSize from "../../Hooks/useWindowSize";
+import Card from "../../Components/Card/Card";
+import Invite from "./Invite/Invite";
+import CreateOrganization from "./CreateOrganization/CreateOrganization";
+import Table from "../../Components/Table/Table";
+import MobileTable from "../../Components/Table/MobileTable";
+import useWindowSize from "../../hooks/useWindowSize";
 
 import classes from "./management.module.scss";
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AccessContext } from "../../context/AccessContext";
 
 const Management = () => {
   const windowSize = useWindowSize();
-  const userData = useContext(AuthContext);
+  const userData = useContext(AccessContext);
   const hasOrganization = userData.user.organization.length > 0;
 
   return (

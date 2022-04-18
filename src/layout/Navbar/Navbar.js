@@ -1,15 +1,9 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { signOut} from "firebase/auth";
-import { fb } from "../../service/firebase";
-
-import classes from "./NavBar.module.scss";
-import { AuthContext } from "../../context/AuthContext";
+import { useContext, useState, Link, signOut, fb, classes, AccessContext } from "./index";
 
 const NavBar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const isLoggedIn = useContext(AuthContext) ? true : false;
-  const isManager = useContext(AuthContext)?.user.isManager ? true : false;
+  const isLoggedIn = useContext(AccessContext) ? true : false;
+  const isManager = useContext(AccessContext)?.user.isManager ? true : false;
   
 
   const logout = () => {

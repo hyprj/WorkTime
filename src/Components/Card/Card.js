@@ -1,6 +1,6 @@
 import classes from "./card.module.scss";
 
-const EmployeeItem = (props) => {
+const Card = (props) => {
   return (
     <div className={classes.item}>
       <p className={classes.title}>{props.title}</p>
@@ -9,4 +9,4 @@ const EmployeeItem = (props) => {
   );
 };
 
-export default EmployeeItem;
+export default Card;

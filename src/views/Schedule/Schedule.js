@@ -1,18 +1,18 @@
-import Section from "../../Components/UI/Section";
+import Section from "../../layout/Section";
 import Table from "../../Components/Table/Table";
 import MobileTable from "../../Components/Table/MobileTable";
-import useWindowSize from "../../Hooks/useWindowSize";
+import useWindowSize from "../../hooks/useWindowSize";
 
 import { getDatabase, ref, onValue } from "firebase/database";
 
 const Schedule = () => {
 
-  const db = getDatabase();
-  const dataRef = ref(db, "organisations/koreanbbq/shifts/week/1");
-  onValue(dataRef, (snapshot) => {
-    const data = snapshot.val();
-    console.log(data);
-  })
+  // const db = getDatabase();
+  // const dataRef = ref(db, "organisations/koreanbbq/shifts/week/1");
+  // onValue(dataRef, (snapshot) => {
+  //   const data = snapshot.val();
+  //   console.log(data);
+  // })
 
 
   const organisationPositions = [

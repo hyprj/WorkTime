@@ -1,6 +1,6 @@
-import classes from "./login.module.scss";
+import classes from "./access.module.scss";
 
-const Auth = (props) => {
+const Access = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.login}>
@@ -12,4 +12,4 @@ const Auth = (props) => {
   );
 };
 
-export default Auth;
+export default Access;

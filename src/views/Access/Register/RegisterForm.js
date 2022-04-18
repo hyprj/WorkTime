@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { fb, createUser } from "../../service/firebase";
+import { fb, createUser } from "../../../service/firebase";
 
-import classes from "../../Routes/Auth/login.module.scss";
+import classes from "../access.module.scss";
 
 const Login = () => {
   const emailRef = useRef();

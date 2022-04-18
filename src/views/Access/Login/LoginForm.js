@@ -2,8 +2,8 @@ import { useState, useContext } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 
-import { fb } from "../../service/firebase";
-import classes from "../../Routes/Auth/login.module.scss";
+import { fb } from "../../../service/firebase";
+import classes from "../access.module.scss";
 
 const Login = () => {
   const [email, setEmail] = useState("");

@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AccessContext } from "../../context/AccessContext";
 import {EmployeeSummary, classes, Card, EmployeeShift, EmployeeInvitationCode, EmployeeInvitation } from "./index";
 
 const Employee = () => {
-  const employeeData = useContext(AuthContext);
+  const employeeData = useContext(AccessContext);
   // console.log(employee);
 
   return (

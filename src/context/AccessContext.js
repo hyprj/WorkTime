@@ -3,9 +3,9 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { fb, getData } from "../service/firebase";
 
-export const AuthContext = createContext();
+export const AccessContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AccessProvider = ({ children }) => {
   const [savedUser, setSavedUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -52,8 +52,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={savedUser}>
+    <AccessContext.Provider value={savedUser}>
       {!loading && children}
-    </AuthContext.Provider>
+    </AccessContext.Provider>
   );
 };

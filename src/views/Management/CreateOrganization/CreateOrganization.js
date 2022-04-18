@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AccessContext } from "../../../context/AccessContext";
 import classes from "./createOrganization.module.scss";
-import { fb, postData, postDataWithUID, updateData } from "../../service/firebase";
+import { fb, postData, postDataWithUID, updateData } from "../../../service/firebase";
 
 const Invite = () => {
   const [organizationName, setOrganizationName] = useState("");
-  const loggedInUser = useContext(AuthContext);
+  const loggedInUser = useContext(AccessContext);
 
   const inputHandler = (e) => {
     setOrganizationName(e.target.value);

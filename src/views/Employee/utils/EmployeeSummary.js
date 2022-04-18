@@ -1,4 +1,4 @@
-import classes from "../../../Routes/Employee/employee.module.scss";
+import classes from "../employee.module.scss";
 
 const EmployeeSummary = ({ employee }) => {
   return (
