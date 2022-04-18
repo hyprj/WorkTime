@@ -5,8 +5,8 @@ const EmployeeSummary = ({ employee }) => {
     <>
       <h2
         className={classes[`employee__header`]}
-      >{`${employee.name} ${employee.last_name}`}</h2>
-      <p>{employee.workplace}</p>
+      >{`${employee.firstName} ${employee.lastName}`}</h2>
+      <p>{employee?.workplace}</p>
       <p className={classes[`employee__position`]}>{employee.position}</p>
     </>
   );

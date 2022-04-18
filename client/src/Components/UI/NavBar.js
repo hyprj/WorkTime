@@ -9,6 +9,8 @@ import { AuthContext } from "../../context/AuthContext";
 const NavBar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const isLoggedIn = useContext(AuthContext) ? true : false;
+  const isManager = useContext(AuthContext)?.user.isManager ? true : false;
+  
 
   const logout = () => {
     signOut(fb.auth).then(() => console.log("user signed out")).catch((err) => console.log(err));
@@ -39,6 +41,16 @@ const NavBar = () => {
               About
             </Link>
           </ol>
+          {isManager && <ol className={classes.navElem} onClick={closeMenu}>
+            <Link to="management" className={classes.navLink}>
+              Management
+            </Link>
+          </ol>}
+          {isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
+            <Link to="me" className={classes.navLink}>
+              Me
+            </Link>
+          </ol>}
           <ol className={classes.navElem} onClick={closeMenu}>
             <Link to="schedule" className={classes.navLink}>
               Schedule

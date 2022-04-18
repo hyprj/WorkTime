@@ -13,10 +13,14 @@ export const AuthProvider = ({ children }) => {
     onAuthStateChanged(fb.auth, (user) => {
       if (user) {
         getData(fb.db, "users", user.uid).then((userFromDb) => {
-          setSavedUser({ ...userFromDb, id: user.uid });
+          // setSavedUser({ ...userFromDb, id: user.uid });
+            setSavedUser({user: userFromDb, userId: user.uid});
+          setLoading(false);
         });
-      } else setSavedUser(null);
-      setLoading(false);
+      } else {
+        setSavedUser(null);
+        setLoading(false);
+      }
     });
   }, []);
 

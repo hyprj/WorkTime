@@ -6,6 +6,6 @@ import Schedule from "./Schedule/Schedule";
 import Auth from "./Auth/Auth";
 import Login from "../Components/Authentication/Login";
 import Register from "../Components/Authentication/Register";
+import Management from "../Components/Management/Management";
 
-
-export { About, Employee, NotFound, NavBar, Schedule, Login, Register, Auth };
+export { About, Employee, NotFound, NavBar, Schedule, Login, Register, Auth, Management };

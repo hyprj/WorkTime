@@ -28,6 +28,7 @@ const Login = () => {
           firstName: firstNameRef.current.value,
           lastName: lastNameRef.current.value,
           isManager: isManagerRef.current.checked,
+          organization: ""
         };
         createUser(auth, db, user, cred.user.uid);
       })

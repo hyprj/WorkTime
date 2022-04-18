@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, child } from "firebase/database";
+import { getDatabase, ref, set, get, child, push, update } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -29,15 +29,39 @@ export const createUser = (auth, db, user, id) => {
   set(ref(db, `users/${id}`), user).then(() => console.log("User stored!"));
 };
 
+export const postDataWithUID = async (auth, db, where, data) => {
+  try {
+    return await push(ref(db, where), data).key;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const postData = async (auth, db, where, data) => {
+  try {
+    const storedData = await set(ref(db, where), data);
+    return storedData;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const updateData = async (db, where, data) => {
+  try {
+    return await update(ref(db, where), data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getData = async (db, from, id) => {
-  let data = null;
-  const dbRef = ref(db);
-  await get(child(dbRef, `${from}/${id}`))
-    .then((snapshot) => {
-      data = snapshot.val();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  return data;
+  try {
+    const dbRef = ref(db);
+    const snapshot = await get(child(dbRef, `${from}/${id}`));
+    const data = snapshot.val();
+    return data;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 };
