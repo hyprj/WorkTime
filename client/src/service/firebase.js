@@ -39,8 +39,7 @@ export const postDataWithUID = async (auth, db, where, data) => {
 
 export const postData = async (auth, db, where, data) => {
   try {
-    const storedData = await set(ref(db, where), data);
-    return storedData;
+    await set(ref(db, where), data);
   } catch (err) {
     console.log(err);
   }

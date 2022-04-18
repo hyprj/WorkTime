@@ -20,7 +20,7 @@ const Invite = () => {
     postDataWithUID(fb.auth, fb.db, "organizations", organization).then(
       (id) => {
         postData(fb.auth, fb.db, `organizations/${id}/users`, {
-          [loggedInUser.userId]: "test",
+          [loggedInUser.userId]: { ...loggedInUser.user, organization: id},
         });
         updateData(fb.db, `users/${loggedInUser.userId}`, {...loggedInUser.user, organization: id});
       }

@@ -7,6 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 const PageRoutes = () => {
   const isLoggedIn = useContext(AuthContext) ? true : false;
   // console.log(useContext(AuthContext).user.isManager)
+  console.log(useContext(AuthContext))
   const isManager = useContext(AuthContext)?.user.isManager ? true : false;
 
   return (
