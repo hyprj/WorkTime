@@ -109,12 +109,13 @@
 .navList {
   display: flex;
   flex-direction: column;
-  text-align: right;
+  text-align: left;
   width: 100%;
   color: black;
   padding: 7rem 0;
   @include mixin.sm {
     flex-direction: row;
+    align-items: center;
     width: auto;
     text-align: left;
     padding: 0;

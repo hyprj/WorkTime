@@ -1,4 +1,5 @@
-@use "../../Assets/breakpoints.scss" as mixin;
+@use "../../assets/breakpoints.scss" as mixin;
+@import "../../assets/variables.scss";
 
 .link {
     font-weight: 500;
@@ -55,7 +56,7 @@
         font-weight: 500;
         border-radius: 1.4rem;
         &Purple {
-            background-color: #993366;
+            background-color: $purple;
         }
     }
     &Wrapper {

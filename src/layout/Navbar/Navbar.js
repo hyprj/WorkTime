@@ -1,6 +1,6 @@
-import { useContext, useState, Link, signOut, fb, classes, AccessContext } from "./index";
+import { useContext, useState, Link, signOut, fb, classes, AccessContext, Button } from "./index";
 
-const NavBar = () => {
+const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const isLoggedIn = useContext(AccessContext) ? true : false;
   const isManager = useContext(AccessContext)?.user.isManager ? true : false;
@@ -51,14 +51,14 @@ const NavBar = () => {
             </Link>
           </ol>
           {!isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
-            <Link to="login" className={classes.btn}>
+            <Button><Link to="login">
               Log In
-            </Link>
+            </Link></Button>
           </ol>}
           {!isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
-            <Link to="register" className={classes.navLink}>
+            <Button color="buttonPurple"><Link to="register">
               Register
-            </Link>
+            </Link></Button>
           </ol>}
           {isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
             <span className={classes.navLink} onClick={logout}>
@@ -71,4 +71,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
