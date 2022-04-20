@@ -1,0 +1,14 @@
+@use "../../assets/breakpoints.scss" as mixin;
+
+.container {
+    margin: 10rem 1rem;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    &Header {
+        font-size: 3.2rem;
+    }
+}

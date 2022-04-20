@@ -1,4 +1,5 @@
 import { useContext, useState, Link, signOut, fb, classes, AccessContext, Button } from "./index";
+import btnStyles  from "../../Components/Button/button.module.scss";
 
 const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
@@ -56,7 +57,7 @@ const Navbar = () => {
             </Link></Button>
           </ol>}
           {!isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
-            <Button color="buttonPurple"><Link to="register">
+            <Button className={btnStyles.buttonPurple}><Link to="register">
               Register
             </Link></Button>
           </ol>}
