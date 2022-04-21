@@ -10,8 +10,8 @@
   cursor: pointer;
   color: $white;
   background-color: $green;
-}
 
-.buttonPurple {
-  background-color: yellow;
+  &--purple {
+    background-color: $purple;
+  }
 }

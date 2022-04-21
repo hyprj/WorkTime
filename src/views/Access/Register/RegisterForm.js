@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { fb, createUser } from "../../../service/firebase";
+import { auth, db, createUser } from "../../../service/firebase";
 
 import classes from "../access.module.scss";
 
-const Login = () => {
+export const RegisterForm = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const firstNameRef = useRef();
@@ -16,11 +16,7 @@ const Login = () => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-
-    const auth = fb.auth;
-
-    const db = fb.db;
-
+    
     createUserWithEmailAndPassword(auth, email, password)
       .then((cred) => {
         console.log("user created", cred.user);
@@ -99,5 +95,3 @@ const Login = () => {
     </form>
   );
 };
-
-export default Login;

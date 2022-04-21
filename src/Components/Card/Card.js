@@ -1,6 +1,6 @@
 import classes from "./card.module.scss";
 
-const Card = (props) => {
+export const Card = (props) => {
   return (
     <div className={classes.item}>
       <p className={classes.title}>{props.title}</p>
@@ -8,5 +8,3 @@ const Card = (props) => {
     </div>
   );
 };
-
-export default Card;

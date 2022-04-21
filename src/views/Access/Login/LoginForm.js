@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 
-import { fb } from "../../../service/firebase";
+import { auth } from "../../../service/firebase";
 import classes from "../access.module.scss";
 
-const Login = () => {
+export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +21,6 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const auth = fb.auth;
     signInWithEmailAndPassword(auth, email, password)
       .then((cred) => {
         console.log("User logged in!");
@@ -67,5 +66,3 @@ const Login = () => {
     </form>
   );
 };
-
-export default Login;

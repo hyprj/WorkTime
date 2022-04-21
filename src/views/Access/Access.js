@@ -1,6 +1,6 @@
 import classes from "./access.module.scss";
 
-const Access = (props) => {
+export const Access = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.login}>
@@ -11,5 +11,3 @@ const Access = (props) => {
     </div>
   );
 };
-
-export default Access;

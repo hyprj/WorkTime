@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { fb, getData } from "../service/firebase";
+import { auth, db, getData } from "../service/firebase";
 
 export const AccessContext = createContext();
 
@@ -11,17 +11,17 @@ export const AccessProvider = ({ children }) => {
 
   const checkForAdditionalData = async ({ user, userId }) => {
     const checkInvitation = async () => {
-      const hasInvitation = await getData(fb.db, "invitations", userId);
+      const hasInvitation = await getData(db, "invitations", userId);
 
       if (hasInvitation) {
-        const organizationName = await getData(fb.db, `organizations/${hasInvitation}`, "name");
+        const organizationName = await getData(db, `organizations/${hasInvitation}`, "name");
         user.invitation = {orgName: organizationName, orgId: hasInvitation};
       }
     };
     const checkShifts = async () => {
       if (user.organization.length > 0) {
         console.log(user.organization)
-        const shifts = await getData(fb.db, `organizations/${user.organization}/shifts`, "18_04_2022-24_04_2022");
+        const shifts = await getData(db, `organizations/${user.organization}/shifts`, "18_04_2022-24_04_2022");
         console.log(shifts);
       }
     }
@@ -34,9 +34,9 @@ export const AccessProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(fb.auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
-        getData(fb.db, "users", user.uid).then((userFromDb) => {
+        getData(db, "users", user.uid).then((userFromDb) => {
           // setSavedUser({ ...userFromDb, id: user.uid });
           checkForAdditionalData({ user: userFromDb, userId: user.uid }).then(
             () => setSavedUser({ user: userFromDb, userId: user.uid })

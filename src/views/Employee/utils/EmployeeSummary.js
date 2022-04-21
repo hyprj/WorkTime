@@ -1,6 +1,6 @@
 import classes from "../employee.module.scss";
 
-const EmployeeSummary = ({ employee }) => {
+export const EmployeeSummary = ({ employee }) => {
   return (
     <>
       <h2
@@ -11,5 +11,3 @@ const EmployeeSummary = ({ employee }) => {
     </>
   );
 };
-
-export default EmployeeSummary;

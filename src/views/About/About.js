@@ -1,6 +1,6 @@
 import classes from "./about.module.scss";
 
-const About = () => {
+export const About = () => {
   return (
     <div className={classes.container}>
       <section className={classes.about}>
@@ -9,5 +9,3 @@ const About = () => {
     </div>
   );
 };
-
-export default About;

@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { AccessContext } from "../../../context/AccessContext";
 import classes from "./createOrganization.module.scss";
-import { fb, postData, postDataWithUID, updateData } from "../../../service/firebase";
+import { auth, db, postData, postDataWithUID, updateData } from "../../../service/firebase";
 
-const Invite = () => {
+export const CreateOrganization = () => {
   const [organizationName, setOrganizationName] = useState("");
   const loggedInUser = useContext(AccessContext);
 
@@ -17,12 +17,12 @@ const Invite = () => {
       name: organizationName,
     };
 
-    postDataWithUID(fb.auth, fb.db, "organizations", organization).then(
+    postDataWithUID(auth, db, "organizations", organization).then(
       (id) => {
-        postData(fb.auth, fb.db, `organizations/${id}/users`, {
+        postData(auth, db, `organizations/${id}/users`, {
           [loggedInUser.userId]: { ...loggedInUser.user, organization: id},
         });
-        updateData(fb.db, `users/${loggedInUser.userId}`, {...loggedInUser.user, organization: id});
+        updateData(db, `users/${loggedInUser.userId}`, {...loggedInUser.user, organization: id});
       }
     );
   };
@@ -39,5 +39,3 @@ const Invite = () => {
     </form>
   );
 };
-
-export default Invite;

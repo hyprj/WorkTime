@@ -1,9 +1,9 @@
-import PageRoutes from "./Routes/Routes";
+import { PageRoutes } from "./Routes/Routes";
 
 import "./assets/index.scss";
 import { AccessProvider } from "./context/AccessContext";
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
       <AccessProvider>
@@ -12,5 +12,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

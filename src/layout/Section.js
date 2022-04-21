@@ -1,6 +1,6 @@
 import classes from "./section.module.scss";
 
-const Section = ({ title, children }) => {
+export const Section = ({ title, children }) => {
   return (
     <div className={classes.sectionContainer}>
       <div className={classes.section}>
@@ -10,5 +10,3 @@ const Section = ({ title, children }) => {
     </div>
   );
 };
-
-export default Section;

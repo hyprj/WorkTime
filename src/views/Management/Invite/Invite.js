@@ -1,8 +1,8 @@
 import { useState } from "react";
 import classes from "./invite.module.scss";
-import { fb, postData } from "../../../service/firebase";
+import { db, postData } from "../../../service/firebase";
 
-const Invite = ({ orgId }) => {
+export const Invite = ({ orgId }) => {
   const [userId, setUserId] = useState("");
 
   const inputHandler = (e) => {
@@ -11,7 +11,7 @@ const Invite = ({ orgId }) => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    postData(fb.auth, fb.db, `invitations/${userId}`, orgId);
+    postData(db, `invitations/${userId}`, orgId);
     setUserId("");
   };
   return (
@@ -22,5 +22,3 @@ const Invite = ({ orgId }) => {
     </form>
   );
 };
-
-export default Invite;

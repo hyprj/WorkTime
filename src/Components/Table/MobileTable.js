@@ -1,7 +1,7 @@
 import classes from "./mobileTable.module.scss";
 
-const MobileTable = ({ headData, bodyData, options }) => {
-  const createTable = () => {
+export const MobileTable = ({ headData, bodyData, options }) => {
+  // const createTable = () => {
     return (
       <>
         <table className={classes.table}>
@@ -24,9 +24,7 @@ const MobileTable = ({ headData, bodyData, options }) => {
         </table>
       </>
     );
-  };
+  // };
 
-  return createTable();
+  // return createTable();
 };
-
-export default MobileTable;

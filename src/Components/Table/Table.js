@@ -1,6 +1,6 @@
 import classes from "./table.module.scss";
 
-const Table = ({ headData, bodyData, options }) => {
+export const Table = ({ headData, bodyData, options }) => {
   const getTd = (position, elem) => {
     const { day } = elem;
 
@@ -42,5 +42,3 @@ const Table = ({ headData, bodyData, options }) => {
     </table>
   );
 };
-
-export default Table;

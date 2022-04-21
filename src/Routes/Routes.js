@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { Employee, About, NotFound, Navbar, Schedule, LoginForm, RegisterForm, Access, Management, AccessContext } from "./index";
 
 
-const PageRoutes = () => {
+export const PageRoutes = () => {
   const isLoggedIn = useContext(AccessContext) ? true : false;
   const isManager = useContext(AccessContext)?.user.isManager ? true : false;
 
@@ -24,5 +24,3 @@ const PageRoutes = () => {
     </Router>
   );
 };
-
-export default PageRoutes;

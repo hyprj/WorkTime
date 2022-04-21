@@ -20,12 +20,15 @@ try {
   console.log(err);
 }
 
-export const fb = {
-  auth: getAuth(),
-  db: getDatabase(),
-};
+// export const fb = {
+//   auth: getAuth(),
+//   db: getDatabase(),
+// };
 
-export const createUser = (auth, db, user, id) => {
+export const auth = getAuth();
+export const db = getDatabase();
+
+export const createUser = (db, user, id) => {
   set(ref(db, `users/${id}`), user).then(() => console.log("User stored!"));
 };
 
@@ -37,7 +40,7 @@ export const postDataWithUID = async (auth, db, where, data) => {
   }
 };
 
-export const postData = async (auth, db, where, data) => {
+export const postData = async (db, where, data) => {
   try {
     await set(ref(db, where), data);
   } catch (err) {

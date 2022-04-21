@@ -1,21 +1,11 @@
 import classes from "./button.module.scss";
-// import classes from "./button.module.css";
 
-const Button = ({ onClick, children, type, color, className }) => {
-  // color = `button${color}`;
-  // const modifier = classes[color] || "";
-  console.log(className)
+export const Button = ({ children, color }) => {
+  color = `button--${color}`;
+  
   return (
-    <button
-      // className={`${classes.button} ${modifier}`}
-      // className={className}
-      className={className}
-      onClick={onClick}
-      type={type || "button"}
-    >
+    <button className={`${classes.button} ${classes[color]}`}>
       {children}
     </button>
   );
 };
-
-export default Button;

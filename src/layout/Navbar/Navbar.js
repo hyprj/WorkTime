@@ -1,14 +1,13 @@
-import { useContext, useState, Link, signOut, fb, classes, AccessContext, Button } from "./index";
-import btnStyles  from "../../Components/Button/button.module.scss";
+import { useContext, useState, Link, signOut, auth, classes, AccessContext, Button } from "./index";
 
-const Navbar = () => {
+export const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const isLoggedIn = useContext(AccessContext) ? true : false;
   const isManager = useContext(AccessContext)?.user.isManager ? true : false;
   
 
   const logout = () => {
-    signOut(fb.auth).then(() => console.log("user signed out")).catch((err) => console.log(err));
+    signOut(auth).then(() => console.log("user signed out")).catch((err) => console.log(err));
   }
 
   const mobileMenuHandler = () => {
@@ -57,7 +56,7 @@ const Navbar = () => {
             </Link></Button>
           </ol>}
           {!isLoggedIn && <ol className={classes.navElem} onClick={closeMenu}>
-            <Button className={btnStyles.buttonPurple}><Link to="register">
+            <Button color="purple"><Link to="register">
               Register
             </Link></Button>
           </ol>}
@@ -71,5 +70,3 @@ const Navbar = () => {
     </header>
   );
 };
-
-export default Navbar;
