@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
 import classes from "./invite.module.scss";
-import { db, postData } from "../../../service/firebase";
+// import { db, postData } from "../../../service/firebase";
 
 export const Invite = ({ orgId }) => {
   const [userId, setUserId] = useState("");
@@ -11,8 +12,8 @@ export const Invite = ({ orgId }) => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    postData(db, `invitations/${userId}`, orgId);
-    setUserId("");
+    // postData(db, `invitations/${userId}`, orgId);
+    // setUserId("");
   };
   return (
     <form className={classes.form} onSubmit={formHandler}>

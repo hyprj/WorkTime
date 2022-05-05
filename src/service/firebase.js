@@ -1,5 +1,16 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, child, push, update } from "firebase/database";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  collection,
+  where,
+  addDoc,
+  updateDoc,
+  setDoc,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -17,53 +28,59 @@ const firebaseConfig = {
 try {
   initializeApp(firebaseConfig);
 } catch (err) {
-  console.log(err);
+  throw new Error(err);
 }
 
-// export const fb = {
-//   auth: getAuth(),
-//   db: getDatabase(),
-// };
-
 export const auth = getAuth();
-export const db = getDatabase();
+export const db = getFirestore();
 
-export const createUser = (db, user, id) => {
-  set(ref(db, `users/${id}`), user).then(() => console.log("User stored!"));
-};
-
-export const postDataWithUID = async (auth, db, where, data) => {
+export const getData = async (...path) => {
   try {
-    return await push(ref(db, where), data).key;
+    const docRef = await doc(db, ...path);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) return docSnap.data();
+    return undefined;
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 
-export const postData = async (db, where, data) => {
+export const getCollection = async (coll, cond) => {
   try {
-    await set(ref(db, where), data);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const updateData = async (db, where, data) => {
-  try {
-    return await update(ref(db, where), data);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const getData = async (db, from, id) => {
-  try {
-    const dbRef = ref(db);
-    const snapshot = await get(child(dbRef, `${from}/${id}`));
-    const data = snapshot.val();
+    const q = query(collection(db, coll), where(...cond));
+    const querySnapshot = await getDocs(q);
+    const data = [];
+    querySnapshot.forEach((document) => data.push(document.data()));
     return data;
   } catch (err) {
-    console.log(err);
-    return null;
+    throw new Error(err);
+  }
+};
+
+export const postData = async (coll, data) => {
+  try {
+    const docRef = await addDoc(collection(db, coll), data);
+    return docRef;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const postDatawithUID = async (coll, id, data) => {
+  try {
+    const docRef = await setDoc(doc(db, coll, id), data);
+    return docRef;
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const updateData = async (coll, id, data) => {
+  try {
+    const docRef = await doc(db, coll, id);
+    const updatedDoc = await updateDoc(docRef, data);
+    return updatedDoc;
+  } catch (err) {
+    throw new Error(err);
   }
 };

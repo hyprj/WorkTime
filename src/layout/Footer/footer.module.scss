@@ -1,0 +1,37 @@
+@use "../../assets/breakpoints.scss" as mixin;
+
+.footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+  background-color: #1b2631;
+  &_list {
+    list-style: none;
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    text-align: center;
+    @include mixin.md {
+      max-width: 60rem;
+    }
+  }
+  &_listItem {
+    flex-basis: 100%;
+    margin: 0.4rem 0;
+    @include mixin.md {
+      flex-basis: 50%;
+    }
+  }
+  &_fakeLink {
+    color: #fff;
+    background-color: transparent;
+    font-family: 'Inter', sans-serif;
+    border: none;
+    color: black;
+    font-size: 1.6rem;
+  }
+  &_fakeLink:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,7 +1,8 @@
+import React from "react";
 import { PageRoutes } from "./Routes/Routes";
+import { AccessProvider } from "./context/AccessContext";
 
 import "./assets/index.scss";
-import { AccessProvider } from "./context/AccessContext";
 
 export const App = () => {
   return (
@@ -11,4 +12,4 @@ export const App = () => {
       </AccessProvider>
     </div>
   );
-}
+};

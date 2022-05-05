@@ -8,7 +8,7 @@
 
 :root {
   font-size: 62.5%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -18,4 +18,10 @@ body {
 a {
   color: rgb(0, 0, 0);
   text-decoration: none;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

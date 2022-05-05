@@ -1,0 +1,40 @@
+@import "../../assets/variables.scss";
+
+.button {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  border: none;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.6rem;
+  border-radius: 100rem;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+  color: $white;
+  background-color: $greenBetter;
+
+  a {
+    color: #fff;
+  }
+
+  a + i {
+    margin-left: 1rem;
+  }
+
+  i + a {
+    margin-left: 1rem;
+  }
+
+  &--purple {
+    background-color: $purple;
+  }
+  &--bigger {
+    padding: 1rem 1.8rem;
+    font-size: 1.8rem;
+  }
+  &--biggest {
+    padding: 1.5rem 2.7rem;
+    font-size: 2rem;
+  }
+}

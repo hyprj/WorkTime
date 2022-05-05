@@ -1,14 +1,43 @@
 @use "../../assets/breakpoints.scss" as mixin;
+@import "../../assets/variables.scss";
 
 .container {
-    margin: 10rem 1rem;
+    background-color: $bgWhite;
+    padding: 10rem 1rem;
+    scroll-behavior: smooth;
 }
 
 .about {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
     text-align: center;
     &Header {
-        font-size: 3.2rem;
+        font-size: 3.6rem;
+        font-family: 'Libre Baskerville', serif;
+        width: min(90%, 70rem);
     }
+
+    &_subHeader {
+        font-size: 1.8rem;
+        // font-family: 'Libre Baskerville', serif;
+        font-weight: 500;
+        padding: 2rem 0;
+        // font-weight: 400;
+    }
+    @include mixin.sm {
+        &Header {
+            font-size: 4.8rem;
+        }
+        &_subHeader {
+            font-size: 2.2rem;
+        }
+    }
+}
+
+.pros {
+    display: flex;
+    justify-content: center;
+    padding: 6rem 0;
 }

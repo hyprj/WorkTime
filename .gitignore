@@ -32,6 +32,9 @@ node_modules
 .gitignore
 firebase.json
 
+#css
+css/
+
 
 # Logs
 logs

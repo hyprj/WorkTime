@@ -1,3 +1,5 @@
+import React from "react";
+
 import classes from "./section.module.scss";
 
 export const Section = ({ title, children }) => {

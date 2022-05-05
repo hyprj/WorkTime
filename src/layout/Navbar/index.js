@@ -6,7 +6,7 @@ import { auth } from "../../service/firebase";
 import { AccessContext } from "../../context/AccessContext";
 
 import classes from "./navbar.module.scss";
-import { Button } from "../../Components/Button/Button";
+import { Button } from "../../Components/clickable/Button";
 
 export {
   useContext,

@@ -1,0 +1,13 @@
+@use "../../../../assets/breakpoints.scss" as mixin;
+@include mixin.lg {
+
+}
+
+.card {
+    display: flex;
+    margin: 1rem;
+    padding: 2rem;
+    @include mixin.md {
+    flex-basis: calc(50% - 2rem);
+    }
+}

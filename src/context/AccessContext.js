@@ -1,59 +1,69 @@
-import { createContext, useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
-import { auth, db, getData } from "../service/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, getData } from "../service/firebase";
+import { getCurrentWeek } from "../utils";
 
 export const AccessContext = createContext();
 
 export const AccessProvider = ({ children }) => {
-  const [savedUser, setSavedUser] = useState(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const checkForAdditionalData = async ({ user, userId }) => {
-    const checkInvitation = async () => {
-      const hasInvitation = await getData(db, "invitations", userId);
-
-      if (hasInvitation) {
-        const organizationName = await getData(db, `organizations/${hasInvitation}`, "name");
-        user.invitation = {orgName: organizationName, orgId: hasInvitation};
+  const fetchData = async (user) => {
+    try {
+      const userData = await getData("users", user.uid);
+      const dataToSet = {
+        user: userData,
+      };
+      if (userData.organization) {
+        const organization = await getData("organizations", user.orgId);
+        const { toDatabase } = getCurrentWeek();
+        const currentShift = await getData(
+          "organizations",
+          user.orgId,
+          toDatabase
+        );
+        dataToSet.organization = organization;
+        dataToSet.shifts[toDatabase] = currentShift;
       }
-    };
-    const checkShifts = async () => {
-      if (user.organization.length > 0) {
-        console.log(user.organization)
-        const shifts = await getData(db, `organizations/${user.organization}/shifts`, "18_04_2022-24_04_2022");
-        console.log(shifts);
-      }
-    }
-
-    if (user.organization.length === 0) {
-      await checkInvitation();
-    } else {
-      await checkShifts();
+      setData(dataToSet);
+      setLoading(false);
+    } catch (err) {
+      throw new Error(err);
     }
   };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        getData(db, "users", user.uid).then((userFromDb) => {
-          // setSavedUser({ ...userFromDb, id: user.uid });
-          checkForAdditionalData({ user: userFromDb, userId: user.uid }).then(
-            () => setSavedUser({ user: userFromDb, userId: user.uid })
-          );
-          // setSavedUser({user: userFromDb, userId: user.uid});
-          setLoading(false);
-        });
+        fetchData(user);
       } else {
-        setSavedUser(null);
+        setData(null);
         setLoading(false);
       }
     });
   }, []);
 
+  const val = useMemo(() => ({ data, refreshData: fetchData }), [data]);
   return (
-    <AccessContext.Provider value={savedUser}>
+    <AccessContext.Provider value={val}>
       {!loading && children}
     </AccessContext.Provider>
   );
+};
+
+export const useAccess = () => {
+  const context = useContext(AccessContext);
+
+  if (context === undefined) {
+    throw new Error("useAccess must be nested in AccessProvider");
+  }
+  return context;
 };

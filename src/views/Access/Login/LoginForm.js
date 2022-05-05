@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ export const LoginForm = () => {
   const [password, setPassword] = useState("");
 
   const handleInput = (event) => {
-    const name = event.target.name;
+    const { name } = event.target;
     if (name === "email") {
       setEmail(event.target.value);
     } else {

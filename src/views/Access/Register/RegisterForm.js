@@ -1,7 +1,7 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db, createUser } from "../../../service/firebase";
+import { auth, db, postDatawithUID } from "../../../service/firebase";
 
 import classes from "../access.module.scss";
 
@@ -16,17 +16,18 @@ export const RegisterForm = () => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((cred) => {
-        console.log("user created", cred.user);
         const user = {
           firstName: firstNameRef.current.value,
           lastName: lastNameRef.current.value,
           isManager: isManagerRef.current.checked,
-          organization: ""
+          organization: "",
+          id: cred.user.uid,
+          invitation: null,
         };
-        createUser(auth, db, user, cred.user.uid);
+        postDatawithUID(db, "users", cred.user.uid, user);
       })
       .catch((err) => console.log(err));
   };

@@ -1,0 +1,11 @@
+@use "../../../../assets/breakpoints.scss" as mixin;
+
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    
+    @include mixin.lg {
+        max-width: 100rem;
+    }
+}

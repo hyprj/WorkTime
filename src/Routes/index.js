@@ -1,3 +1,10 @@
+import React, { useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { About } from "../views/About/About";
 import { Employee } from "../views/Employee/Employee";
 import { NotFound } from "../views/NotFound/NotFound";
@@ -7,9 +14,11 @@ import { Access } from "../views/Access/Access";
 import { LoginForm } from "../views/Access/Login/LoginForm";
 import { RegisterForm } from "../views/Access/Register/RegisterForm";
 import { Management } from "../views/Management/Management";
-import { AccessContext } from "../context/AccessContext";
+import { Footer } from "../layout/Footer/Footer";
+import { useAccess } from "../context/AccessContext";
 
 export {
+  React,
   About,
   Employee,
   NotFound,
@@ -19,5 +28,11 @@ export {
   RegisterForm,
   Access,
   Management,
-  AccessContext,
+  useAccess,
+  Footer,
+  Router,
+  Routes,
+  Route,
+  Navigate,
+  useContext,
 };

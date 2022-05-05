@@ -6,8 +6,8 @@
     display: block;
     color: #fff;
     font-family: "Lora", serif;
-    font-size: 3.2rem;
-    font-weight: 700;
+    font-size: 2.6rem;
+    font-weight: 600;
     cursor: pointer;
   }
 
@@ -22,7 +22,7 @@
   align-items: center;
   padding: 0 2.4rem;
   height: 6rem;
-  background-color: $blue;
+  background-color: $red;
   color: #fff;
 
   @include mixin.sm-max {
