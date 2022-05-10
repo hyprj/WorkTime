@@ -1,24 +1,15 @@
 import React from "react";
 import { useAccess } from "../../context/AccessContext";
 
-import {
-  useContext,
-  useState,
-  Link,
-  signOut,
-  auth,
-  classes,
-  AccessContext,
-  Button,
-} from "./index";
+import { useState, Link, signOut, auth, classes } from "./index";
 
 export const Navbar = () => {
-  // const { user } = useContext(AccessContext);
   const { data } = useAccess();
   const user = data?.user;
   const [isMenuActive, setIsMenuActive] = useState(false);
 
   const logout = () => {
+    console.log("xd");
     signOut(auth).catch((err) => console.log(err));
   };
 
@@ -36,7 +27,11 @@ export const Navbar = () => {
 
   return (
     <header className={classes.header}>
-      <button type="button" onClick={mobileMenuHandler}>
+      <button
+        className={classes.nav_hamburger}
+        type="button"
+        onClick={mobileMenuHandler}
+      >
         <i className={`fa-solid fa-bars fa-2xl ${classes.hamburger}`} />
       </button>
       <nav
@@ -78,28 +73,23 @@ export const Navbar = () => {
           )}
           {!user && (
             <ol className={classes.navElem}>
-              <Button>
-                <Link to="login">Log In</Link>
-              </Button>
+              <Link to="login" className={classes.navLink}>
+                Login
+              </Link>
             </ol>
           )}
           {!user && (
             <ol className={classes.navElem}>
-              <Button color="purple">
-                <Link to="register">Register</Link>
-              </Button>
+              <Link to="register" className={classes.navLink}>
+                Register
+              </Link>
             </ol>
           )}
           {user && (
             <ol className={classes.navElem}>
-              <span
-                className={classes.navLink}
-                onClick={logout}
-                role="button"
-                tabIndex="0"
-              >
+              <Link to="/" onClick={logout} className={classes.navLink}>
                 Log out
-              </span>
+              </Link>
             </ol>
           )}
         </ul>

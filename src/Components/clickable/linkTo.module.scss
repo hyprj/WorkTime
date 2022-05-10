@@ -1,0 +1,10 @@
+.link {
+    text-decoration: none;
+    color: #fff;
+    &___black {
+        color: black;
+    }
+    &___underline {
+        text-decoration: underline;
+    }
+}

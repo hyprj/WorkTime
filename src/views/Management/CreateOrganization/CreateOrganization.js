@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
-
-import { AccessContext } from "../../../context/AccessContext";
+import React, { useState } from "react";
+import { useAccess } from "../../../context/AccessContext";
+import { postData, updateData } from "../../../service/firebase";
 import classes from "./createOrganization.module.scss";
 
 export const CreateOrganization = () => {
+  const { data } = useAccess();
+  const { user } = data;
   const [organizationName, setOrganizationName] = useState("");
-  // const loggedInUser = useContext(AccessContext);
 
   const inputHandler = (e) => {
     setOrganizationName(e.target.value);
@@ -13,26 +14,16 @@ export const CreateOrganization = () => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    // const userFromDb = {
-    //   loggedInUser
-    // }
-    // const organization = {
-    //   name: organizationName,
-    //   employees: []
-    // }
-    // e.preventDefault();
-    // const organization = {
-    //   name: organizationName,
-    // };
 
-    // postDataWithUID(auth, db, "organizations", organization).then(
-    //   (id) => {
-    //     postData(auth, db, `organizations/${id}/users`, {
-    //       [loggedInUser.userId]: { ...loggedInUser.user, organization: id},
-    //     });
-    //     updateData(db, `users/${loggedInUser.userId}`, {...loggedInUser.user, organization: id});
-    //   }
-    // );
+    const organization = {
+      name: organizationName,
+      manager: user.id,
+    };
+
+    postData("organizations", organization).then((id) => {
+      const updatedUser = { ...user, organization: id };
+      updateData("users", user.id, updatedUser);
+    });
   };
   return (
     <form className={classes.form} onSubmit={formHandler}>

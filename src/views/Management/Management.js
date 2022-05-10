@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Card } from "../../Components/Card/Card";
 import { Invite } from "./Invite/Invite";
 import { CreateOrganization } from "./CreateOrganization/CreateOrganization";
@@ -7,7 +7,7 @@ import { MobileTable } from "../../Components/Table/MobileTable";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
 import classes from "./management.module.scss";
-import { AccessContext, useAccess } from "../../context/AccessContext";
+import { useAccess } from "../../context/AccessContext";
 
 export const Management = () => {
   // const windowSize = useWindowSize();

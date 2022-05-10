@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { AccessContext } from "../../context/AccessContext";
+import { useAccess } from "../../context/AccessContext";
+
 import {
   EmployeeSummary,
   classes,
@@ -11,21 +12,20 @@ import {
 } from "./index";
 
 export const Employee = () => {
-  const { savedUser } = useContext(AccessContext);
-  const organization = !!savedUser.organization;
-  console.log(organization);
+  const { data } = useAccess();
+  const { user } = data;
 
   return (
     <div className={classes.employee}>
       <Card title="About me">
-        <EmployeeSummary employee={savedUser} />
+        <EmployeeSummary employee={user} />
       </Card>
-      {!savedUser.isManager && (
+      {!user.isManager && (
         <Card title="Invitation">
-          <EmployeeInvitationCode id={savedUser.id} />
+          <EmployeeInvitationCode id={user.id} />
         </Card>
       )}
-      {savedUser.invitation && (
+      {user.invitation && (
         <Card title="Invitation">
           <EmployeeInvitation from />
         </Card>

@@ -1,28 +1,54 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db, postDatawithUID } from "../../../service/firebase";
+import { Button } from "../../../layout/Navbar";
 
 import classes from "../access.module.scss";
+import { useForm } from "../../../hooks/useForm";
 
 export const RegisterForm = () => {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const isManagerRef = useRef();
+  const [form, dispatchForm] = useForm("register");
+  const isMounted = useRef(true);
+
+  const { isValid: emailIsValid } = form.email;
+  const { isValid: passwordIsValid } = form.password;
+  const { isValid: firstNameIsValid } = form.firstName;
+  const { isValid: lastNameIsValid } = form.lastName;
+
+  useEffect(() => {
+    if (!isMounted.current) {
+      if (
+        emailIsValid &&
+        passwordIsValid &&
+        firstNameIsValid &&
+        lastNameIsValid
+      ) {
+        dispatchForm({ type: "FORM_IS_VALID" });
+      } else {
+        dispatchForm({ type: "FORM_IS_INVALID" });
+      }
+    }
+    isMounted.current = false;
+  }, [emailIsValid, passwordIsValid, firstNameIsValid, lastNameIsValid]);
+
+  const handleInput = (event) => {
+    dispatchForm({
+      type: "USER_INPUT",
+      value: event.target.value,
+      field: event.target.name,
+      exactType: event.target.type,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, form.email.value, form.password.value)
       .then((cred) => {
         const user = {
-          firstName: firstNameRef.current.value,
-          lastName: lastNameRef.current.value,
-          isManager: isManagerRef.current.checked,
+          firstName: form.firstName.value,
+          lastName: form.lastName.value,
+          isManager: form.isAdmin.checked,
           organization: "",
           id: cred.user.uid,
           invitation: null,
@@ -40,7 +66,8 @@ export const RegisterForm = () => {
         name="email"
         placeholder="email address"
         type="email"
-        ref={emailRef}
+        onChange={handleInput}
+        value={form.email.value}
         required
       />
       <input
@@ -48,8 +75,8 @@ export const RegisterForm = () => {
         name="password"
         placeholder="password"
         type="password"
-        minLength="5"
-        ref={passwordRef}
+        value={form.password.value}
+        onChange={handleInput}
         required
       />
       <input
@@ -57,7 +84,8 @@ export const RegisterForm = () => {
         name="firstName"
         placeholder="First Name"
         type="text"
-        ref={firstNameRef}
+        value={form.firstName.value}
+        onChange={handleInput}
         required
       />
       <input
@@ -65,7 +93,8 @@ export const RegisterForm = () => {
         name="lastName"
         placeholder="Last Name"
         type="text"
-        ref={lastNameRef}
+        value={form.lastName.value}
+        onChange={handleInput}
         required
       />
       <div className={classes.loginWrapper}>
@@ -73,22 +102,21 @@ export const RegisterForm = () => {
           id="isManager"
           name="isManager"
           placeholder="password"
-          ref={isManagerRef}
           type="checkbox"
         />
         <label htmlFor="isManager" name="isManager" value="manager">
           Are you Manager?
         </label>
       </div>
-      <button
-        className={`${classes.loginButton} ${classes.loginButtonPurple}`}
-        type="submit"
+      <Button
         onClick={handleSubmit}
+        type="submit"
+        disabled={!form.isValid.value}
       >
-        Sign in
-      </button>
+        Sign In
+      </Button>
       <p className={classes.loginSignup}>
-        Already have an acount?{" "}
+        Already have an acount?&nbsp;
         <Link to="/login" className={classes.link}>
           Log in
         </Link>

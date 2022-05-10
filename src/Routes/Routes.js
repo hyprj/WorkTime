@@ -18,7 +18,8 @@ import {
 } from "./index";
 
 export const PageRoutes = () => {
-  const { savedUser } = useAccess();
+  const { data } = useAccess();
+  const user = data?.user;
 
   return (
     <Router>
@@ -29,22 +30,18 @@ export const PageRoutes = () => {
         <Route path="/schedule" element={<Schedule />} />
         <Route
           path="/me"
-          element={savedUser ? <Employee /> : <Navigate replace to="/login" />}
+          element={user ? <Employee /> : <Navigate replace to="/login" />}
         />
         <Route
           path="/management"
           element={
-            savedUser?.isManager ? (
-              <Management />
-            ) : (
-              <Navigate replace to="/login" />
-            )
+            user?.isManager ? <Management /> : <Navigate replace to="/login" />
           }
         />
         <Route
           path="/login"
           element={
-            savedUser ? (
+            user ? (
               <Navigate replace to="/" />
             ) : (
               <Access>

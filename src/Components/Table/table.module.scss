@@ -1,107 +1,107 @@
-@use "../../Assets/breakpoints.scss" as mixin;
+// @use "../../Assets/breakpoints.scss" as mixin;
 
-.table {
-  border-spacing: 0;
-  margin: 4rem 0;
-}
-
-.tableItem {
-  width: 14rem;
-  height: 6rem;
-  text-align: center;
-
-  &Time {
-    color: #fff;
-    margin: 0 .6rem;
-    border-radius: .3rem;
-    padding: 1rem .2rem;
-  }
-}
-
-.red {
-  background-color: #ff8080;
-}
-.green {
-  background-color: 	 #313091;
-}
-
-.tableHeadItem:first-of-type {
-  border-radius: 1.2rem 0 0 0;
-}
-
-.tableHeadItem:last-of-type {
-  border-radius: 0 1.2rem 0 0;
-}
-
-.tableHead {
-  background-color: #5f9ea0;
-  color: #fff;
-}
-
-.tableRow:nth-child(even) {
-  background-color: #eff5f5;
-}
-
-.tableRow .tableItem:first-of-type {
-  border-left: 2px solid #5f9ea0;
-}
-
-.tableRow .tableItem:last-of-type {
-  border-right: 2px solid #5f9ea0;
-}
-
-.tableRow:last-of-type .tableItem {
-  border-bottom: 2px solid #5f9ea0;
-}
-
-.tableRow:last-of-type .tableItem:first-of-type {
-  border-radius: 0 0 0 1.2rem;
-}
-
-.tableRow:last-of-type .tableItem:last-of-type {
-  border-radius: 0 0 1.2rem 0;
-}
-
-// td + td {
-//   border-left: 2px solid #52898b;
+// .table {
+//   border-spacing: 0;
+//   margin: 4rem 0;
 // }
 
-// @include mixin.md-max {
-//   .table, .tableHead, .tableBodyody, .tableItem { 
-// 		display: block; 
-// 	}
-//   thead tr { 
-// 		position: absolute;
-// 		top: -9999px;
-// 		left: -9999px;
-// 	}
-	
-// 	tr { border: 1px solid #ccc; }
-	
-// 	td { 
-// 		/* Behave  like a "row" */
-// 		border: none;
-// 		border-bottom: 1px solid #eee; 
-// 		position: relative;
-// 		padding-left: 50%; 
-// 	}
-	
-// 	td:before { 
-// 		/* Now like a table header */
-// 		position: absolute;
-// 		/* Top/left values mimic padding */
-// 		top: 6px;
-// 		left: -60px;
-// 		width: 45%; 
-// 		padding-right: 10px; 
-// 		white-space: nowrap;
-// 	}
-//   td:nth-of-type(1):before { content: "FirstName LastName"; }
-// 	td:nth-of-type(2):before { content: "Monday"; }
-// 	td:nth-of-type(3):before { content: "Monday"; }
-// 	td:nth-of-type(4):before { content: "Monday"; }
-// 	td:nth-of-type(5):before { content: "Monday"; }
-// 	td:nth-of-type(6):before { content: "Monday"; }
-// 	td:nth-of-type(7):before { content: "Monday"; }
-// 	td:nth-of-type(8):before { content: "Monday"; }
+// .tableItem {
+//   width: 14rem;
+//   height: 6rem;
+//   text-align: center;
+
+//   &Time {
+//     color: #fff;
+//     margin: 0 .6rem;
+//     border-radius: .3rem;
+//     padding: 1rem .2rem;
+//   }
 // }
+
+// .red {
+//   background-color: #ff8080;
+// }
+// .green {
+//   background-color: 	 #313091;
+// }
+
+// .tableHeadItem:first-of-type {
+//   border-radius: 1.2rem 0 0 0;
+// }
+
+// .tableHeadItem:last-of-type {
+//   border-radius: 0 1.2rem 0 0;
+// }
+
+// .tableHead {
+//   background-color: #5f9ea0;
+//   color: #fff;
+// }
+
+// .tableRow:nth-child(even) {
+//   background-color: #eff5f5;
+// }
+
+// .tableRow .tableItem:first-of-type {
+//   border-left: 2px solid #5f9ea0;
+// }
+
+// .tableRow .tableItem:last-of-type {
+//   border-right: 2px solid #5f9ea0;
+// }
+
+// .tableRow:last-of-type .tableItem {
+//   border-bottom: 2px solid #5f9ea0;
+// }
+
+// .tableRow:last-of-type .tableItem:first-of-type {
+//   border-radius: 0 0 0 1.2rem;
+// }
+
+// .tableRow:last-of-type .tableItem:last-of-type {
+//   border-radius: 0 0 1.2rem 0;
+// }
+
+// // td + td {
+// //   border-left: 2px solid #52898b;
+// // }
+
+// // @include mixin.md-max {
+// //   .table, .tableHead, .tableBodyody, .tableItem { 
+// // 		display: block; 
+// // 	}
+// //   thead tr { 
+// // 		position: absolute;
+// // 		top: -9999px;
+// // 		left: -9999px;
+// // 	}
+	
+// // 	tr { border: 1px solid #ccc; }
+	
+// // 	td { 
+// // 		/* Behave  like a "row" */
+// // 		border: none;
+// // 		border-bottom: 1px solid #eee; 
+// // 		position: relative;
+// // 		padding-left: 50%; 
+// // 	}
+	
+// // 	td:before { 
+// // 		/* Now like a table header */
+// // 		position: absolute;
+// // 		/* Top/left values mimic padding */
+// // 		top: 6px;
+// // 		left: -60px;
+// // 		width: 45%; 
+// // 		padding-right: 10px; 
+// // 		white-space: nowrap;
+// // 	}
+// //   td:nth-of-type(1):before { content: "FirstName LastName"; }
+// // 	td:nth-of-type(2):before { content: "Monday"; }
+// // 	td:nth-of-type(3):before { content: "Monday"; }
+// // 	td:nth-of-type(4):before { content: "Monday"; }
+// // 	td:nth-of-type(5):before { content: "Monday"; }
+// // 	td:nth-of-type(6):before { content: "Monday"; }
+// // 	td:nth-of-type(7):before { content: "Monday"; }
+// // 	td:nth-of-type(8):before { content: "Monday"; }
+// // }

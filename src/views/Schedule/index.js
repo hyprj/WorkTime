@@ -4,8 +4,8 @@ import { Table } from "../../Components/Table/Table";
 import { MobileTable } from "../../Components/Table/MobileTable";
 import { useWindowSize } from "../../hooks/useWindowSize";
 
-import { db, getData } from "../../service/firebase";
-import { getWeek } from "../../utils";
+import { getData } from "../../service/firebase";
+import { getWeek } from "../../service/utils";
 import { WeekNav } from "../../Components/Table/WeekNav";
 
 export {
@@ -15,7 +15,6 @@ export {
   useWindowSize,
   useEffect,
   useState,
-  db,
   getData,
   getWeek,
   WeekNav,

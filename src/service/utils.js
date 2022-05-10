@@ -34,10 +34,6 @@ const formatWeek = (monday, sunday) => {
   return week;
 };
 
-// const getDayWithLongMonth = (day) => {
-
-// }
-
 export const getCurrentWeek = () => {
   const date = new Date();
 
@@ -108,4 +104,28 @@ export const formatWeekData = (employees, shifts, week) => {
     body,
   };
   return data;
+};
+
+export const formatDataForTable = (employees, shifts) => {
+  const rows = employees.forEach((employee) => {
+    const row = {};
+    row.key = employee.id;
+    row.firstName = employee.firstName;
+    row.lastName = employee.lastName;
+    row.shifts = [];
+  });
+
+  const res = {
+    head: ["0", "1", "2", "3", "4", "5", "6", "7", "8"],
+    // body:
+  };
+};
+
+export const checkValidity = (action) => {
+  if (action.exactType === "email") {
+    const reValidEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    return reValidEmail.test(action.value);
+  }
+  const reValidText = /^\S{4,}$/;
+  return reValidText.test(action.value);
 };

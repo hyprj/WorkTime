@@ -60,7 +60,7 @@ export const getCollection = async (coll, cond) => {
 export const postData = async (coll, data) => {
   try {
     const docRef = await addDoc(collection(db, coll), data);
-    return docRef;
+    return docRef.id;
   } catch (err) {
     throw new Error(err);
   }

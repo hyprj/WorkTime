@@ -141,3 +141,10 @@
 .navLink:focus {
   border-bottom: 0.2rem solid black;
 }
+
+
+.nav_hamburger {
+  @include mixin.sm {
+    display: none;
+  }
+}

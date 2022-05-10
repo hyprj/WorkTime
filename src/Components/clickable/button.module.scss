@@ -1,9 +1,6 @@
 @import "../../assets/variables.scss";
 
 .button {
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
   border: none;
   padding: 0.8rem 1.6rem;
   font-size: 1.6rem;
@@ -13,6 +10,11 @@
   cursor: pointer;
   color: $white;
   background-color: $greenBetter;
+
+  &:disabled {
+    background-color: rgb(169, 169, 169);
+    cursor:default;
+  }
 
   a {
     color: #fff;
