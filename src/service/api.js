@@ -1,4 +1,6 @@
-import { getCollection, getData } from "./firebase";
+import React from "react";
+import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { db, getCollection, getData, updateData } from "./firebase";
 import { getCurrentWeek } from "./utils";
 
 export const fetchOrganization = async (id) => {
@@ -30,13 +32,9 @@ export const fetchShift = async (id, week) => {
   }
   try {
     const shift = await getData("organizations", id, "shifts", weekToFetch);
-    // return [weekToFetch, shift];
-    return {
-      weekToFetch,
-      shift,
-    };
-  } catch (err) {
-    throw new Error(err);
+    return shift;
+  } catch (error) {
+    throw new Error(error);
   }
 };
 
@@ -54,12 +52,44 @@ export const fetchAdditionalUserData = async ({ organization }) => {
     const [org, employees, shift] = await Promise.all([
       fetchOrganization(organization),
       fetchEmployees(organization),
-      fetchShift(organization),
     ]);
-    const shifts = new Map([[shift.weekToFetch, shift.shift]]);
-    const res = { organization: org, employees, shifts };
+    const res = { organization: org, employees };
     return res;
   } catch (err) {
     throw new Error(err);
   }
 };
+
+export const handleAuthChange = async (userAuth) => {
+  try {
+    const user = await fetchUser(userAuth);
+    const additionalUserData = await fetchAdditionalUserData(user);
+    return { user, ...additionalUserData };
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const inviteEmployee = async (id, orgName, orgId) => {
+  try {
+    const user = await getData("users", id);
+    user.invitation = { orgName, orgId };
+    updateData("users", id, user);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// export const prepareTableData = ({ employees, shifts }, weekToFetch) => {
+//   const res = employees.map((e) => {
+//     const data = { display: `${e.firstName} ${e.lastName}` };
+//     // shifts.get(weekToFetch)
+//     for (const shift of shifts.get(weekToFetch)[e.id]) {
+//       console.log("xd");
+//     }
+//     const info = { id: e.id };
+//     // const shift = shifts.get(weekToFetch)[e.id];
+//     return { data, info };
+//   });
+//   return res;
+// };

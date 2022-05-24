@@ -1,7 +1,12 @@
-import React from "react";
-import { useAccess } from "../../context/AccessContext";
-
-import { useState, Link, signOut, auth, classes } from "./index";
+import {
+  React,
+  useAccess,
+  useState,
+  Link,
+  signOut,
+  auth,
+  classes,
+} from "./index";
 
 export const Navbar = () => {
   const { data } = useAccess();
@@ -9,7 +14,7 @@ export const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
 
   const logout = () => {
-    console.log("xd");
+    // console.log("XD");
     signOut(auth).catch((err) => console.log(err));
   };
 
@@ -37,61 +42,63 @@ export const Navbar = () => {
       <nav
         className={
           isMenuActive
-            ? `${classes.nav} ${classes.navActive}`
+            ? `${classes.nav} ${classes.nav___active}`
             : `${classes.nav}`
         }
       >
         <Link to="/" className="reset">
-          <p className={classes.navLogo}>WorkTime</p>
+          <p className={classes.nav_logo}>WorkTime</p>
         </Link>
-        <ul className={classes.navList}>
-          <ol className={classes.navElem}>
-            <Link to="about" className={classes.navLink}>
+        <ul className={classes.nav_list}>
+          <ol className={classes.nav_elem}>
+            <Link to="about" className={classes.nav_link}>
               About
             </Link>
           </ol>
           {user?.isManager && (
-            <ol className={classes.navElem}>
-              <Link to="management" className={classes.navLink}>
+            <ol className={classes.nav_elem}>
+              <Link to="management" className={classes.nav_link}>
                 Management
               </Link>
             </ol>
           )}
           {user && (
-            <ol className={classes.navElem}>
-              <Link to="me" className={classes.navLink}>
+            <ol className={classes.nav_elem}>
+              <Link to="me" className={classes.nav_link}>
                 Me
               </Link>
             </ol>
           )}
           {!!user?.organization && (
-            <ol className={classes.navElem}>
-              <Link to="schedule" className={classes.navLink}>
+            <ol className={classes.nav_elem}>
+              <Link to="schedule" className={classes.nav_link}>
                 Schedule
               </Link>
             </ol>
           )}
-          {!user && (
-            <ol className={classes.navElem}>
-              <Link to="login" className={classes.navLink}>
-                Login
-              </Link>
-            </ol>
-          )}
-          {!user && (
-            <ol className={classes.navElem}>
-              <Link to="register" className={classes.navLink}>
-                Register
-              </Link>
-            </ol>
-          )}
-          {user && (
-            <ol className={classes.navElem}>
-              <Link to="/" onClick={logout} className={classes.navLink}>
-                Log out
-              </Link>
-            </ol>
-          )}
+          <div className={classes.nav_access}>
+            {!user && (
+              <ol className={classes.nav_elem}>
+                <Link to="login" className={classes.nav_link}>
+                  Login
+                </Link>
+              </ol>
+            )}
+            {!user && (
+              <ol className={classes.nav_elem}>
+                <Link to="register" className={classes.nav_link}>
+                  Register
+                </Link>
+              </ol>
+            )}
+            {user && (
+              <ol className={classes.nav_elem}>
+                <Link to="/" onClick={logout} className={classes.nav_link}>
+                  Log out
+                </Link>
+              </ol>
+            )}
+          </div>
         </ul>
       </nav>
     </header>

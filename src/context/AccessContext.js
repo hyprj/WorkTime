@@ -8,7 +8,11 @@ import React, {
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../service/firebase";
-import { fetchAdditionalUserData, fetchUser } from "../service/api";
+import {
+  fetchAdditionalUserData,
+  fetchUser,
+  handleAuthChange,
+} from "../service/api";
 
 export const AccessContext = createContext();
 
@@ -19,16 +23,24 @@ export const AccessProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        fetchUser(user).then((res) => {
-          // setData({ user: res });
-          fetchAdditionalUserData(res).then((complete) => {
-            setLoading(false);
-            setData({ user: res, ...complete });
-          });
+        // fetchUser(user)
+        //   .then((res) => {
+        //     fetchAdditionalUserData(res).then((complete) => {
+        //       setLoading(false);
+        //       setData({ user: res, ...complete });
+        //     });
+        //   })
+        //   .catch(() => {
+        //     setData(null);
+        //     setLoading(false);
+        //   });
+        handleAuthChange(user).then((res) => {
+          setData(res);
+          setLoading(false);
         });
       } else {
-        setData(null);
         setLoading(false);
+        setData(null);
       }
     });
   }, []);

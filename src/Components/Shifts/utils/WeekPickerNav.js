@@ -1,15 +1,11 @@
 import React from "react";
-import classes from "./weeknav.module.scss";
+import { getWeek } from "../../../service/utils";
+import classes from "./weekPickerNav.module.scss";
 
-export const WeekNav = ({ week, setWeek, getWeek }) => {
+export const WeekPickerNav = ({ current, setWeek }) => {
   const buttonHandler = (e) => {
-    if (e.target.name === "left") {
-      const prevWeek = getWeek(week, "previous");
-      setWeek(prevWeek);
-    } else {
-      const nextWeek = getWeek(week, "next");
-      setWeek(nextWeek);
-    }
+    const weekToSet = e.target.name === "left" ? "previous" : "next";
+    setWeek(getWeek(current, weekToSet));
   };
 
   return (
@@ -23,7 +19,7 @@ export const WeekNav = ({ week, setWeek, getWeek }) => {
         <i className="fa-solid fa-arrow-left" />
       </button>
       <div className={classes.nav_date}>
-        <p>{week.toString}</p>
+        <p>{current.toString}</p>
       </div>
       <button
         className={`${classes.nav_arrow} ${classes.nav_arrow___right}`}

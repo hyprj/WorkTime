@@ -39,8 +39,6 @@ export const useForm = (type) => {
   const formType = getFormType(type);
   const initialObj = createInputFields(formType);
 
-  console.log("XD");
-
   const formReducer = (state, action) => {
     if (
       action.type === "USER_INPUT" &&
@@ -58,7 +56,6 @@ export const useForm = (type) => {
       };
     }
     if (action.type === "FORM_IS_VALID") {
-      console.log("halo");
       return { ...state, isValid: { value: true } };
     }
     if (action.type === "FORM_IS_INVALID") {

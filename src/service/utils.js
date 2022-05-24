@@ -28,7 +28,7 @@ const formatWeek = (monday, sunday) => {
   const week = {
     monday,
     sunday,
-    toDatabase: `${mon}-${sun}`,
+    toDatabase: `x${mon}-${sun}`.replaceAll("-", "_"),
     toString: `${monShort} - ${sunShort}`,
   };
   return week;

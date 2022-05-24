@@ -6,7 +6,7 @@ export const Access = ({ children }) => {
   return (
     <div className={classes.container}>
       <div className={classes.login}>
-        <div className={classes.loginContent} />
+        <div className={classes.login_content} />
         {children}
       </div>
     </div>

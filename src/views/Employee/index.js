@@ -4,6 +4,7 @@ import { Card } from "../../Components/Card/Card";
 import { EmployeeShift } from "./utils/EmployeeShift";
 import { EmployeeInvitationCode } from "./utils/EmployeeInvitationCode";
 import { EmployeeInvitation } from "../../Components/Dashboard/EmployeeInvitation";
+import { Section } from "../../layout/Section";
 
 export {
   EmployeeSummary,
@@ -12,4 +13,5 @@ export {
   EmployeeShift,
   EmployeeInvitationCode,
   EmployeeInvitation,
+  Section,
 };

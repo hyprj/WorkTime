@@ -2,16 +2,6 @@
 
 .employee {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   font-family: "Roboto", sans-serif;
-
-  @include mixin.md {
-    grid-template-columns: 1fr 1fr;
-    margin: 20px 30px;
-  }
-
-  @include mixin.lg {
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 200px;
-    margin: 50px 100px;
-  }
 }

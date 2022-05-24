@@ -5,31 +5,34 @@ import { CreateOrganization } from "./CreateOrganization/CreateOrganization";
 import { Table } from "../../Components/Table/Table";
 import { MobileTable } from "../../Components/Table/MobileTable";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { Section } from "../../layout/Section";
+import { Shifts } from "../../Components/Shifts/Shifts";
 
 import classes from "./management.module.scss";
 import { useAccess } from "../../context/AccessContext";
 
 export const Management = () => {
-  // const windowSize = useWindowSize();
-  // const user = useContext(AccessContext);
-  const { user } = useAccess().data;
+  const { data } = useAccess();
+  const { user } = data;
   const hasOrganization = !!user.organization;
 
   return (
-    <div className={classes.container}>
-      <section className={classes.managementCards}>
-        {hasOrganization && (
-          <Card title="Invite">
-            <Invite orgId={user.organization} />
-          </Card>
-        )}
-        {!hasOrganization && (
-          <Card title="Create your organization">
-            <CreateOrganization />
-          </Card>
-        )}
-        {/* { windowSize.width > 767 ? <Table headData={tHeadData} bodyData={employeesShifts} options={organisationPositions}/> : <MobileTable headData={tHeadData} bodyData={employeesShifts} options={organisationPositions}/>} */}
-      </section>
-    </div>
+    <Section title="Management">
+      <div className={classes.management_container}>
+        <section className={classes.management_cards}>
+          {hasOrganization && (
+            <Card title="Invite">
+              <Invite orgId={user.organization} name={data.organization.name} />
+            </Card>
+          )}
+          {!hasOrganization && (
+            <Card title="Create your organization">
+              <CreateOrganization />
+            </Card>
+          )}
+        </section>
+        {hasOrganization && <Shifts />}
+      </div>
+    </Section>
   );
 };

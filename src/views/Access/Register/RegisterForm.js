@@ -49,6 +49,7 @@ export const RegisterForm = () => {
           firstName: form.firstName.value,
           lastName: form.lastName.value,
           isManager: form.isAdmin.checked,
+          email: form.email.value,
           organization: "",
           id: cred.user.uid,
           invitation: null,
