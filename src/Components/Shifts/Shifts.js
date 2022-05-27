@@ -8,20 +8,16 @@ import { Modal } from "../Modal/Modal";
 import classes from "./shifts.module.scss";
 import { fetchShift } from "../../service/api";
 
-const prepareRowData = (employees, shifts) => {
-  // console.log(shifts);
-  const data = [];
-  employees.forEach((e) => {
-    const res = {
-      info: { id: e.id },
-      data: shifts?.[e.id] ? shifts[e.id] : {},
+const getTableData = (employees, shifts) => {
+  return employees.map((employee) => {
+    return {
+      info: { id: employee.id },
+      data: {
+        display: { toString: `${employee.firstName} ${employee.lastName}` },
+        ...shifts?.[employee.id],
+      },
     };
-    res.data.display = { toString: `${e.firstName} ${e.lastName}` };
-    data.push(res);
   });
-
-  console.log("data", data);
-  return data;
 };
 
 export const Shifts = ({ editable }) => {
@@ -30,15 +26,14 @@ export const Shifts = ({ editable }) => {
   const [week, setWeek] = useState(getWeek());
   const [shifts, setShifts] = useState(new Map());
   const [currentShift, setCurrentShift] = useState(null);
+  // const []
 
   useEffect(() => {
     if (shifts.get(week.toDatabase)) {
-      // const currShift = prepareRowData(employees, shifts.get(week.toDatabase));
       setCurrentShift(shifts.get(week.toDatabase));
-      // console.log(currShift, week.toDatabase);
     } else {
       fetchShift(data.user.organization, week.toDatabase).then((res) => {
-        const currShift = prepareRowData(employees, res);
+        const currShift = getTableData(employees, res);
         setShifts((prev) => prev.set(week.toDatabase, currShift));
         setCurrentShift(currShift);
       });
@@ -81,6 +76,7 @@ export const Shifts = ({ editable }) => {
       {currentShift && (
         <Table editable={editable} columns={thead} data={currentShift} />
       )}
+      {/* {editable && } */}
       {editable && <Modal />}
     </div>
   );
